@@ -8,7 +8,7 @@ Welcome to **Spotify 2.0**, a sleek and functional full-stack music streaming we
 
 ## 🚀 Live Preview
 
-[🔗 Live Demo](https://spotify-2-o-iknz-b5p54ws7y-priyanshu-rajs-projects-a1211202.vercel.app/playlist) (Add your deployed link here after deploying with Vercel/Netlify)
+[🔗 Live Demo]() (https://spotify-2-o-iknz-b5p54ws7y-priyanshu-rajs-projects-a1211202.vercel.app/playlist)
 
 ---
 
