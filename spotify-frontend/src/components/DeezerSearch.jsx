@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import SongCard from "./SongCard";
-import NowPlayingBar from "./NowPlayingBar"
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
 
-const DeezerSearch = () => {
+const DeezerSearch = ({nowPlaying ,setNowPlaying}) => {
 
     const [query, setQuery] = useState('');
     const [songs, setSongs] = useState([]);
-    const [nowPlaying, setNowPlaying] = useState(null);
+    
 
     const handleSearch = async (searchQuery = query) => {
         try {
-            const encodedQuery = encodeURIComponent(`https://api.deezer.com/search?q=${searchQuery}`);
             const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=${query}`,
                 {
                     headers: {
@@ -33,7 +31,7 @@ const DeezerSearch = () => {
         const alreadySaved = existing.find((item) => item.id === song.id);
         if (!alreadySaved) {
             localStorage.setItem("myPlaylist", JSON.stringify([...existing, song]));
-            toast.success("🎵 Added to Playlist!");
+            toast.success("Added to Playlist!");
         } else {
             toast.info('Aleady in Playlist');
         }
@@ -41,8 +39,8 @@ const DeezerSearch = () => {
 
 
     return (
-        <div className='p-4 max-w-7xl mx-auto'>
-            <h1 className='text-2xl md:text-4xl font-bold text-center mb-6'>Search Music</h1>
+        <div className='p-4 max-w-7xl mx-auto bg-yellow-100 '>
+            <h1 className='text-2xl md:text-4xl font-bold text-center mb-6 text-green-800'>Search Music</h1>
 
             <div className='flex flex-col md:flex-bold mb-6 gap-4 justify-center '>
                 <input
@@ -52,12 +50,8 @@ const DeezerSearch = () => {
                     placeholder="Search songs or artists"
                     className='border p-3 flex-1 rounded w-full md:w-auto'
                 />
-                <button onClick={handleSearch} className='bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded shadow-md'>Search</button>
-
-
-             
-
-
+                <button onClick={handleSearch} 
+                className='bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded shadow-md'>Search</button>
             </div>
 
             <div className='flex flex-wrap justify-center gap-3 mb-8'>
@@ -79,9 +73,6 @@ const DeezerSearch = () => {
                 ))}
             </div>
 
-            {nowPlaying && (
-                <NowPlayingBar song={nowPlaying} />
-            )}
         </div>
     )
 }
