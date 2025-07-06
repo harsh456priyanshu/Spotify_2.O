@@ -10,20 +10,18 @@ const DeezerSearch = ({nowPlaying ,setNowPlaying}) => {
     const [songs, setSongs] = useState([]);
     
 
-    const handleSearch = async (searchQuery = query) => {
-        try {
-            const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=${query}`,
-                {
-                    headers: {
-                        'X-Requested-with': 'XMLHttpRequest'
-                    }
-                }
-            );
-            setSongs(res.data.data);
-        } catch (err) {
-            console.log(err);
-        }
-    };
+
+const proxyURL = 'https://vercel.com/priyanshu-rajs-projects-a1211202/deezer-cors-proxy/G8vzzSZGT5WD4ereG1V5y1NBshsL';
+
+const handleSearch = async () => {
+  try {
+    const res = await axios.get(`${proxyURL}?url=search?q=${query}`);
+    setSongs(res.data.data);
+  } catch (err) {
+    console.error('Failed to fetch', err);
+  }
+};
+
 
 
     const handleAddToPlaylist = (song) => {
