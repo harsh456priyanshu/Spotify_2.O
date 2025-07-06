@@ -1,9 +1,5 @@
 {
-  "version": 2,
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/proxy.js"
-    }
+  "rewrites": [
+    { "source": "/api/proxy", "destination": "/cors-proxy/api/proxy.js" }
   ]
 }
