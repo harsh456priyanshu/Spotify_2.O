@@ -11,18 +11,21 @@ const DeezerSearch = ({nowPlaying ,setNowPlaying}) => {
     
 
 
-const proxyURL = 'https://vercel.com/priyanshu-rajs-projects-a1211202/deezer-cors-proxy/G8vzzSZGT5WD4ereG1V5y1NBshsL';
-
-const handleSearch = async () => {
-  try {
-    const res = await axios.get(`${proxyURL}?url=search?q=${query}`);
-    setSongs(res.data.data);
-  } catch (err) {
-    console.error('Failed to fetch', err);
-  }
-};
-
-
+   const handleSearch = async (searchQuery = query) => {
+        try {
+            
+            const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=${query}`,
+                {
+                    headers: {
+                        'X-Requested-with': 'XMLHttpRequest'
+                    }
+                }
+            );
+            setSongs(res.data.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     const handleAddToPlaylist = (song) => {
         const existing = JSON.parse(localStorage.getItem("myPlaylist")) || [];
@@ -38,18 +41,16 @@ const handleSearch = async () => {
 
     return (
         <div className='p-4 max-w-7xl mx-auto bg-yellow-100 '>
-            <h1 className='text-2xl md:text-4xl font-bold text-center mb-6 text-green-800'>Search Music</h1>
-
-            <div className='flex flex-col md:flex-bold mb-6 gap-4 justify-center '>
+            <div className='flex flex-row md:flex-bold mb-6 gap-4 justify-center '>
                 <input
                     type='text'
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search songs or artists"
-                    className='border p-3 flex-1 rounded w-full md:w-auto'
+                    className='border-b p-3 flex-1 outline-0 hover:scale-102  w-3/4 md:w-auto rounded-full'
                 />
                 <button onClick={handleSearch} 
-                className='bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded shadow-md'>Search</button>
+                className='text-green-700 hover:text-black text-2xl  hover:scale-102  px-6 py-3 outline-0 rounded-full  border-b w-1/4'>Search</button>
             </div>
 
             <div className='flex flex-wrap justify-center gap-3 mb-8'>
@@ -57,7 +58,7 @@ const handleSearch = async () => {
                     <button
                         key={gerne}
                         onClick={() => handleSearch(gerne)}
-                        className='bg-gray-200  hover:bg-green-500  hover:text-white  px-4 py-2 rounded-full  text-sm font-semibold transition'
+                        className='bg-gray-200  hover:bg-green-700  hover:scale-110 hover:text-white  px-4 py-2 rounded-full  text-sm font-semibold transition'
                     >
                         {gerne}
                     </button>

@@ -4,11 +4,11 @@ import { faBookmark } from '@fortawesome/free-regular-svg-icons';
 
 const SongCard = ({song , setNowPlaying ,handleAddToPlaylist}) => {
   return (
-    <div className='bg-green-400 rounded shadow hover:shadow-lg tansition p-4 flex flex-col items-center'>
+    <div className='bg-green-400 rounded shadow hover:shadow-lg tansition p-4 flex flex-col items-center hover:scale-101  '>
             <img src={song.album.cover} alt={song.album.title} className='w-full h-auto rounded'/>
             <h2 className='text-lg fonnt-semibold mt-2 text-center'>{song.artist.name}</h2>
             <p className='text-gray-600 text-sm text-center'>{song.artist.name}</p>
-           {/* // <audio controls src={song.preview} className='mt-2 w-full' /> */}
+        
             <div className='flex  justify-between'>
               <button 
             onClick={() => setNowPlaying(song)}

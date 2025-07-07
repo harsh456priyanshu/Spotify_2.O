@@ -37,15 +37,15 @@ const handlePlayNow = (song) => {
 
   return (
     <div className='p-6 max-w-7xl mx-auto'>
-            <h1 className='text-3xl font-bold text-center mb-8'>My Playlist</h1>
+            <h1 className='text-green-700 hover:text-black mb-3 text-4xl  justify-center text-shadow-blue-200  px-6 py-3 outline-0 font-extrabold border-b w-full'>My Playlist</h1>
 
             {playlist.length === 0 ? (
                 <p className='text-center text-gray-500'>No songs saved yet.</p>
             ) : (
-                <div className='grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
+                <div className='grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
                     {playlist.map((song) => (
                         <div key={song.id} className='bg-green-400 shadow rounded p-4 text-center'>
-                            <img src={song.thumbnailUrl} alt={song.title}  className='w-full h-40 object-cover rounded'/>
+                            <img src={song.thumbnailUrl} alt={song.title}  className='w-full h-auto  rounded'/>
                             <h2 className='mt-2 font-semibold'>{song.title}</h2>
                             <p className='text-sm text-gray-500'>{song.artist}</p>
                             
