@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SongCard from "./SongCard";
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import MicButton from "./MicButton"
 
 
 const DeezerSearch = ({nowPlaying ,setNowPlaying}) => {
@@ -12,20 +13,21 @@ const DeezerSearch = ({nowPlaying ,setNowPlaying}) => {
 
 
    const handleSearch = async (searchQuery = query) => {
-        try {
-            
-            const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=${query}`,
-                {
-                    headers: {
-                        'X-Requested-with': 'XMLHttpRequest'
-                    }
-                }
-            );
-            setSongs(res.data.data);
-        } catch (err) {
-            console.log(err);
+    try {
+      const res = await axios.get(
+        `https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=${searchQuery}`,
+        {
+          headers: {
+            'X-Requested-with': 'XMLHttpRequest'
+          }
         }
-    };
+      );
+      setSongs(Array.isArray(res.data.data) ? res.data.data : []);
+    } catch (err) {
+      console.log(err);
+      setSongs([]); 
+    }
+  };
 
     const handleAddToPlaylist = (song) => {
         const existing = JSON.parse(localStorage.getItem("myPlaylist")) || [];
@@ -49,8 +51,14 @@ const DeezerSearch = ({nowPlaying ,setNowPlaying}) => {
                     placeholder="Search songs or artists"
                     className='border-b p-3 flex-1 outline-0 hover:scale-102  w-3/4 md:w-auto rounded-full'
                 />
+               
                 <button onClick={handleSearch} 
                 className='text-green-700 hover:text-black text-2xl  hover:scale-102  px-6 py-3 outline-0 rounded-full  border-b w-1/4'>Search</button>
+                 <MicButton  onVoice={(voiceText) => {
+                    setQuery(voiceText);
+                     handleSearch(voiceText);
+                     
+                    }} />
             </div>
 
             <div className='flex flex-wrap justify-center gap-3 mb-8'>
