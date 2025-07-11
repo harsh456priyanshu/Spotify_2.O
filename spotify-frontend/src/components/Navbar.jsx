@@ -14,13 +14,11 @@ return (
                 <img src={logo} alt="Logo" className="h-12 hover:scale-110  object-contain" />
                
             </div>
-            <ul className='flex gap-6 text-sm md-text-base'>
+            <ul className='flex gap-10 text-sm md-text-base'>
                 <li>
                     <Link to="/"  className='hover:text-green-400 font-bold text-xl hover:font-extralight transition'>Home</Link>
                 </li>
-                <li>
-                    <Link to="/browse" className='hover:text-green-400 font-bold text-xl hover:font-extralight  transition'>Browse</Link>
-                </li>
+             
                 <li>
                     <Link to="/playlist" className='hover:text-green-400 font-bold text-xl hover:font-extralight  transition'>My Playlist</Link>
                 </li>

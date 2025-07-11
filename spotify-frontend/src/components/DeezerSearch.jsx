@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import SongCard from "./SongCard";
 import { toast } from 'react-toastify';
 import axios from 'axios';
@@ -7,9 +7,15 @@ import MicButton from "./MicButton"
 
 const DeezerSearch = ({nowPlaying ,setNowPlaying}) => {
 
-    const [query, setQuery] = useState('');
-    const [songs, setSongs] = useState([]);
-    
+    const [query, setQuery] = useState(localStorage.getItem('lastQuery') || '');
+    const [songs, setSongs] = useState(() => {
+         try {
+        return JSON.parse(localStorage.getItem('lastSongs')) || [];
+    }catch {
+        return []
+    }
+    });
+   
 
 
    const handleSearch = async (searchQuery = query) => {
@@ -22,7 +28,10 @@ const DeezerSearch = ({nowPlaying ,setNowPlaying}) => {
           }
         }
       );
-      setSongs(Array.isArray(res.data.data) ? res.data.data : []);
+      const results = Array.isArray(res.data.data) ? res.data.data : [];
+      setSongs(results);
+      localStorage.setItem('lastSongs' , JSON.stringify(results));
+      localStorage.setItem('lastQuery' , searchQuery);
     } catch (err) {
       console.log(err);
       setSongs([]); 
@@ -38,7 +47,14 @@ const DeezerSearch = ({nowPlaying ,setNowPlaying}) => {
         } else {
             toast.info('Aleady in Playlist');
         }
-    }
+    };
+
+
+    useEffect(() => {
+        if(query && songs.length === 0) {
+            handleSearch(query);
+        }
+    } , []);
 
 
     return (

@@ -44,21 +44,21 @@ const handlePlayNow = (song) => {
             ) : (
                 <div className='grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
                     {playlist.map((song) => (
-                        <div key={song.id} className='bg-green-400 shadow rounded p-4 text-center'>
-                            <img src={song.thumbnailUrl} alt={song.title}  className='w-full h-auto  rounded'/>
+                        <div key={song.id} className='relative p-4 rounded-xl shadow-lg bg-green-400 bg-opacity-30 backdrop-blur-xl border border-green-300 hover:scale-105 transition duration-300 flex flex-col items-center'>
+                            <img src={song.thumbnailUrl} alt={song.title}  className='w-full h-auto rounded mb-3'/>
                             <h2 className='mt-2 font-semibold'>{song.title}</h2>
-                            <p className='text-sm text-gray-500'>{song.artist}</p>
+                            <p className='text-green-100 text-sm text-center font-["Circular"]'>{song.artist}</p>
                             
-                            <div className="flex justify-center gap-2 mt-3">
+                            <div className="flex justify-between w-full mt-3 gap-2">
                                 <button
                                 onClick={() => handlePlayNow(song)}
-                                className='mt-3 bg-green-900 text-white px-4 py-2 rounded hover:bg-green-700' 
+                                className='flex-1 bg-green-900 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-200' 
                                 >Play Now
                                 </button>
 
                                  <button
                                 onClick={() => handleRemove(song.id)}
-                                 className=" text-white px-4 py-1 rounded hover:bg-red-600 text-2xl" 
+                                 className=" text-white px-4 py-1 rounded hover:text-red-600 text-2xl" 
                                 ><FontAwesomeIcon icon={faTrashCan} className="" />
 
                                 </button>
