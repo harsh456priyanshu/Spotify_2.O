@@ -8,7 +8,7 @@ Welcome to **Spotify 2.0**, a sleek and functional full-stack music streaming we
 
 ## 🚀 Live Preview
 
-[🔗 Live Demo]() (https://spotify-2-o-iknz.vercel.app/) under devlopment might me link not working
+[🔗 Live Demo]() (https://spotify-2-o-cwuu.vercel.app/)  ```` Hey If you want to use This just click on the link , search some song Or Artist name OK , The go to -> Inspect -> console -> get the link like this "https://cors-anywhere.herokuapp.com/corsdemo" just open and ask it for demo ; To temporarily unlock access to the demo , the came back and just use the Melodify , music the Api provide oly 30 second free song , If you know some free api you can suggest me , 
 
 
 ---
