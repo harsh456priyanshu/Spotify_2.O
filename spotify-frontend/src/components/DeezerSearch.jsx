@@ -58,7 +58,7 @@ const DeezerSearch = ({nowPlaying ,setNowPlaying}) => {
 
 
     return (
-        <div className='p-4 max-w-7xl mx-auto bg-yellow-100 '>
+        <div className='p-4 max-w-7xl mx-auto bg-blue-800 '>
             <div className='flex flex-row md:flex-bold mb-6 gap-4 justify-center '>
                 <input
                     type='text'
@@ -69,7 +69,7 @@ const DeezerSearch = ({nowPlaying ,setNowPlaying}) => {
                 />
                
                 <button onClick={handleSearch} 
-                className='text-green-700 hover:text-black text-2xl  hover:scale-102  px-6 py-3 outline-0 rounded-full  border-b w-1/4'>Search</button>
+                className='text-black hover:text-blue-900 lg:text-2xl  sm:text-sm hover:scale-102  px-6 py-3 outline-0 rounded-full  border-b w-1/4'>Search</button>
                  <MicButton  onVoice={(voiceText) => {
                     setQuery(voiceText);
                      handleSearch(voiceText);
@@ -82,7 +82,7 @@ const DeezerSearch = ({nowPlaying ,setNowPlaying}) => {
                     <button
                         key={gerne}
                         onClick={() => handleSearch(gerne)}
-                        className='bg-gray-200  hover:bg-green-700  hover:scale-110 hover:text-white  px-4 py-2 rounded-full  text-sm font-semibold transition'
+                        className='bg-blue-900  hover:bg-blue-700  hover:scale-110 hover:text-white  px-4 py-2 rounded-full  text-sm font-semibold transition'
                     >
                         {gerne}
                     </button>
